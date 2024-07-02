@@ -19,7 +19,7 @@ prev_frame_time = 0
 new_frame_time = 0
 while True:
     # ret, frame = cap.read()
-    frame = cv2.imread("data/test2.jpeg")
+    frame = cv2.imread("data/test7.jpeg")
     image_height, image_width = frame.shape[0], frame.shape[1]
     imgcenter_x = image_width / 2
     imgcenter_y = image_height / 2
@@ -32,6 +32,7 @@ while True:
     # print(DP)
 
     if len(DP) != 0:
+        big_box = []
         for i in range(len(detect_params[0])):
             boxes = detect_params[0].boxes
             box = boxes[i]  # returns one box
@@ -53,9 +54,25 @@ while True:
             # Extract the region of interest (ROI) from the bounding box
             roi = frame[y:y + h, x:x + w]
 
-            dominant_color = get_dominant_color(roi)
+            dominant_color, dominant_hue = get_dominant_color(roi)
+
+            big_box.append((dominant_color, w, bb)) #appending to list
+
             cv2.putText(frame, str(dominant_color), (int(x + 20), int(y)),
                         cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 0), 2)  # black color
+            cv2.putText(frame, str(dominant_hue), (int(x + 20), int(y+10)),
+                        cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 0), 2)  # black color
+
+        max_width = 0
+        for color, width, bb in big_box:
+            if color == "red" and width > max_width: #put correct color here
+                max_width = width
+                coord = bb #can extract coordinates here
+
+        #call movement function based on coord value here
+        '''
+        movement_func()
+        '''
 
     # Display the resulting frame
     cv2.imshow("ObjectDetection", frame)
