@@ -2,7 +2,7 @@
 
 This repository contains the code for the autonomous robot for DD-Robocon competition at IIT-Delhi. 
 
-
+![Testing Video](./assets/ball_pickup_testing.mov)
 
 ---
 ### 1.Description:
