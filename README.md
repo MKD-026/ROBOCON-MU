@@ -10,6 +10,7 @@ The task of the autonomous bot is to go from zone1 to zone3 autonomously. In zon
 
 ### 2. Requirements and installation:
 The hardware components used for the Autonomous bot are: Jetson Xavier (edge computer used for AI tasks), and RasberryPi 4(microcontroller for communicating with motors).
+![Circuit-diagram](./assets/robo.jpeg)
 
 **Requirements**
 ```
